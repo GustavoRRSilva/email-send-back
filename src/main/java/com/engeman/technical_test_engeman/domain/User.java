@@ -23,6 +23,7 @@ public class User {
     private String name;
     private String password;
     private String email;
+    private String resetPasswordToken;
 	public String getEmail() {
 		return email;
 	}
@@ -41,4 +42,11 @@ public class User {
 	public void setName(String name) {
 		this.name = name;
 	}
+	public String getResetPasswordToken() {
+		return resetPasswordToken;
+	}
+	public void setResetPasswordToken(String resetPasswordToken) {
+		this.resetPasswordToken = resetPasswordToken;
+	}
+	
 }

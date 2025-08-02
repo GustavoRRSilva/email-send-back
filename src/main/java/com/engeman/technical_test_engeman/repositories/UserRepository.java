@@ -10,4 +10,5 @@ import com.engeman.technical_test_engeman.domain.User;
 
 public interface UserRepository extends JpaRepository<User, String> {
     Optional<User> findByEmail(String email);
+    Optional<User> findByResetPasswordToken(String token);
 }
