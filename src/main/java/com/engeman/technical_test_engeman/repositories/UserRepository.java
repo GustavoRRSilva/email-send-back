@@ -1,10 +1,12 @@
-package loginauthapi.repositories;
+package com.engeman.technical_test_engeman.repositories;
 
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import loginauthapi.domain.User;
+import com.engeman.technical_test_engeman.domain.User;
+
+
 
 public interface UserRepository extends JpaRepository<User, String> {
     Optional<User> findByEmail(String email);
