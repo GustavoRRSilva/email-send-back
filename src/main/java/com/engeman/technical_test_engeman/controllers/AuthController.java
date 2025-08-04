@@ -91,7 +91,7 @@ public class AuthController {
     }
 
     
-    @PostMapping("forgot-password")
+    @PostMapping("/forgot-password")
     public ResponseEntity<?> forgotPassword(@RequestBody Map<String,String> body){
     	String email = body.get("email");
         Optional<User> userOpt = repository.findByEmail(email);
@@ -102,7 +102,8 @@ public class AuthController {
         User user = userOpt.get();
         
         String resetToken = UUID.randomUUID().toString();
-        
+        user.setResetPasswordToken(resetToken);
+        repository.save(user); 
         String resetLink ="http://localhost:3000/auth/reset-password?token=" + resetToken;
         emailServiceSMTP.SendSimpleMessage(new EmailServiceSMTPdto(user.getEmail(),"Recuperação de senha","Clique no link para resetar sua senha: " + resetLink));
         return ResponseEntity.ok(Map.of("status", "Sucesso"));
