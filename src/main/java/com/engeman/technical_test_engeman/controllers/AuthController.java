@@ -4,7 +4,6 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
-import org.apache.coyote.BadRequestException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -104,8 +103,9 @@ public class AuthController {
         
         String resetToken = UUID.randomUUID().toString();
         
-        String resetLink ="http://localhost:8080/auth/reset-password?token=" + resetToken;
+        String resetLink ="http://localhost:3000/auth/reset-password?token=" + resetToken;
         emailServiceSMTP.SendSimpleMessage(new EmailServiceSMTPdto(user.getEmail(),"Recuperação de senha","Clique no link para resetar sua senha: " + resetLink));
-        return ResponseEntity.ok("Email enviado com instruções para resetar a senha");
+        return ResponseEntity.ok(Map.of("status", "Sucesso"));
+
     }
 }
